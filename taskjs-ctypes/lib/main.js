@@ -31,10 +31,10 @@ let libc = {
 
         let os = Services.appinfo.OS;
 
+        // Try letting the system look for the library in standard locations.
         if (os == "Darwin") {
             this.lib = ctypes.open("libc.so");
         } else if (os == "Linux") {
-            // Try letting the system look for the library in standard locations.
             this.lib = ctypes.open("libc.so.6");
         } else {
             throw "Your OS " + os + " is not supported";
