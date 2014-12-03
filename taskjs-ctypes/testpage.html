@@ -12,6 +12,9 @@
     lengthInBytes("hello", function(result) {
         console.log("Length in bytes: " + result);
     });
+
+    var deferred = lengthInBytesPromise("hello");
+    console.log(deferred);
   </script>
 </body>
 </html>

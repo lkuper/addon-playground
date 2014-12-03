@@ -8,5 +8,21 @@ function lengthInBytes(arg, callback) {
     });
 }
 
+function lengthInBytesPromise(arg) {
+    self.port.emit("lengthInBytesCalled", arg);
+
+    let returnVal = new Promise(function(resolve, reject) {
+        // ???
+    });
+
+    self.port.on("lengthInBytesReturned", function(result) {
+        Promise.resolve(returnVal);
+    });
+
+    return returnVal;
+}
+
 exportFunction(lengthInBytes, unsafeWindow, {defineAs: "lengthInBytes",
                                              allowCallbacks: true});
+
+exportFunction(lengthInBytesPromise, unsafeWindow, {defineAs: "lengthInBytesPromise"});
