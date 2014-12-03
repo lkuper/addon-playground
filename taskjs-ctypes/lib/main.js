@@ -33,7 +33,7 @@ let libc = {
 
         // Try letting the system look for the library in standard locations.
         if (os == "Darwin") {
-            this.lib = ctypes.open("libc.so");
+            this.lib = ctypes.open("libc.dylib");
         } else if (os == "Linux") {
             this.lib = ctypes.open("libc.so.6");
         } else {
