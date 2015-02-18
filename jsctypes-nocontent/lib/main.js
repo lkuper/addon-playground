@@ -22,18 +22,18 @@ function loadLibraries() {
 
     // Try letting the system look for the library in standard locations.
     if (os == "Darwin") {
-        this.lib = ctypes.open("libc.dylib");
+        libc = ctypes.open("libc.dylib");
     } else if (os == "Linux") {
-        this.lib = ctypes.open("libc.so.6");
+        libc = ctypes.open("libc.so.6");
     } else {
         throw "Your OS " + os + " is not supported";
     }
 
     // Declare the `strlen` function.
-    libc_strlen = this.lib.declare("strlen",
-                                   ctypes.default_abi,
-                                   ctypes.size_t,
-                                   ctypes.char.ptr);
+    libc_strlen = libc.declare("strlen",
+                               ctypes.default_abi,
+                               ctypes.size_t,
+                               ctypes.char.ptr);
 }
 
 function unloadLibraries() {
