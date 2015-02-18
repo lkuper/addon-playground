@@ -49,9 +49,18 @@ function lengthInBytes(str) {
 
     let length = libc_strlen(cString);
 
-    // `length` is a ctypes.UInt64; turn it into a JSON-serializable
-    // string before returning it.
+    // `length` is a ctypes.UInt64; turn it into a string before
+    // returning it.
     return length.toString();
+}
+
+function lengthMessage(str) {
+    return "Hello from privileged code! "
+        + "According to your `strlen`, the string '"
+        + str
+        + "' has length "
+        + lengthInBytes(str)
+        + ".";
 }
 
 function injectFunctions(event) {
@@ -60,9 +69,9 @@ function injectFunctions(event) {
   log("injecting functions for origin " + event.data);
   let domWindow = event.subject;
 
-  // Add lengthInBytes() to window
-  Cu.exportFunction(lengthInBytes, domWindow,
-                    { defineAs: "lengthInBytes" });
+  // Add `lengthMessage` to window
+  Cu.exportFunction(lengthMessage, domWindow,
+                    { defineAs: "lengthMessage" });
 }
 
 
