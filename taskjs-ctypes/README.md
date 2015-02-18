@@ -1,0 +1,1 @@
+See [this Stack Overflow question](http://stackoverflow.com/questions/27262373/using-generators-promises-to-do-simulated-synchronous-communication-in-with) for an explanation of what I was trying to do here.
